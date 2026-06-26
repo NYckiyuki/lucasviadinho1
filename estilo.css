@@ -1,0 +1,57 @@
+/* ===== PALETA DE CORES ===== */
+:root {
+    --cor-cabecalho: #3716f3;
+    --cor-fundo: #f5f2f2;
+    --cor-texto: #3b2121;
+    --cor-texto-claro: #ffffff;
+    --cor-link: #00720f;
+    --cor-link-hover: #ffd8b1;
+}
+
+/* ===== CONFIGURAÇÕES GERAIS ===== */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* ===== CABEÇALHO ===== */
+.cabecalho {
+    background-color: var(--cor-cabecalho);
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cabecalho-link {
+    color: var(--cor-link);
+    text-decoration: none;
+}
+.cabecalho-link:hover {
+    color: var(--cor-link-hover);
+}
+
+/* ===== TÍTULO ===== */
+h1 {
+    color: var(--cor-texto-claro);
+    font-size: 24px;
+    margin: 0; /* Remove margens padrões que quebram o layout */
+}
+
+/* ===== CONTEÚDO PRINCIPAL (Correção do layout) ===== */
+.conteudo {
+    flex: 1; /* Ocupa todo o espaço vertical disponível, empurrando o rodapé */
+    padding: 20px 25px;
+}
+
+/* ===== RODAPÉ ===== */
+footer {
+    background-color: var(--cor-cabecalho);
+    color: var(--cor-texto-claro);
+    padding: 15px 25px;
+}
