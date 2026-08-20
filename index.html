@@ -3,234 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tecnologia, Óptica e Acessibilidade</title>
+    <title>Tecnologia Assistiva, Óptica Avançada e Robótica</title>
     <style>
-        /* --- ESTILOS PADRÃO (Acessibilidade Visual) --- */
+        /* --- SISTEMA DE CORES ACESSÍVEIS (WCAG) --- */
         :root {
-            --bg-color: #f4f7f6;
-            --text-color: #222222;
-            --card-bg: #ffffff;
-            --accent-color: #0056b3;
-            --border-color: #cccccc;
-            --font-multiplier: 1;
+            --bg-principal: #f8fafc;
+            --bg-card: #ffffff;
+            --texto-principal: #1e293b;
+            --texto-secundario: #475569;
+            --cor-acentuacao: #0f172a;
+            --cor-link: #0284c7;
+            --cor-borda: #cbd5e1;
+            --cor-destaque: #e2e8f0;
         }
 
-        /* Classe de Alto Contraste ativada por JavaScript */
+        /* Classe de Alto Contraste (Injetada via JS) */
         .alto-contraste {
-            --bg-color: #000000;
-            --text-color: #ffffff;
-            --card-bg: #121212;
-            --accent-color: #ffff00;
-            --border-color: #ffffff;
+            --bg-principal: #000000;
+            --bg-card: #121212;
+            --texto-principal: #ffffff;
+            --texto-secundario: #e2e8f0;
+            --cor-acentuacao: #ffff00;
+            --cor-link: #ffff00;
+            --cor-borda: #ffffff;
+            --cor-destaque: #1e1e1e;
         }
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-principal);
+            color: var(--texto-principal);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
-            transition: background 0.3s, color 0.3s;
+            line-height: 1.8;
+            font-size: 1.2rem; /* Fonte ampliada nativa para inclusão */
+            transition: background 0.2s, color 0.2s;
         }
 
-        /* Link invisível para leitores de tela pularem o menu */
+        /* Skip Link para usuários de teclado / leitores de tela */
         .skip-link {
             position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--accent-color);
-            color: white;
-            padding: 8px;
-            z-index: 100;
+            top: -100px;
+            left: 10px;
+            background: var(--cor-acentuacao);
+            color: var(--bg-card);
+            padding: 15px;
+            z-index: 1000;
             text-decoration: none;
+            border: 2px solid var(--texto-principal);
+            font-weight: bold;
         }
         .skip-link:focus {
-            top: 0;
+            top: 10px;
         }
 
-        /* Barra de Acessibilidade Fixa */
+        /* Barra Assistiva Superior */
         .barra-acessibilidade {
-            background-color: var(--card-bg);
-            border-bottom: 2px solid var(--border-color);
-            padding: 10px;
-            text-align: right;
+            background-color: var(--bg-card);
+            border-bottom: 3px solid var(--cor-borda);
+            padding: 12px 24px;
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 100;
             display: flex;
-            justify-content: flex-end;
-            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .btn-acessibilidade {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            border: 2px solid var(--text-color);
+        .titulo-barra {
+            font-size: 0.95rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--texto-secundario);
+        }
+
+        .grupo-botoes {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-assistivo {
+            background-color: var(--bg-principal);
+            color: var(--texto-principal);
+            border: 2px solid var(--texto-principal);
             padding: 8px 16px;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 4px;
-            font-size: 1rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
         }
 
-        .btn-acessibilidade:hover, .btn-acessibilidade:focus {
-            outline: 3px solid orange;
+        .btn-assistivo:hover, .btn-assistivo:focus {
+            background-color: var(--texto-principal);
+            color: var(--bg-card);
+            outline: 3px solid #f59e0b;
         }
 
-        /* Conteúdo Principal */
+        /* Estrutura de Conteúdo */
         header {
+            max-width: 1000px;
+            margin: 40px auto 20px auto;
+            padding: 0 24px;
             text-align: center;
-            padding: 40px 20px;
-            background-color: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 2.6rem;
+            color: var(--cor-acentuacao);
+        }
+
+        .meta-info {
+            font-size: 1.1rem;
+            color: var(--texto-secundario);
+            border-bottom: 2px solid var(--cor-borda);
+            padding-bottom: 20px;
         }
 
         main {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 0 20px;
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         section {
-            background-color: var(--card-bg);
-            padding: 30px;
-            margin-bottom: 30px;
+            background-color: var(--bg-card);
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--cor-borda);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            color: var(--cor-acentuacao);
+            border-left: 6px solid var(--cor-acentuacao);
+            padding-left: 15px;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--cor-acentuacao);
+            margin-top: 30px;
+            border-bottom: 2px solid var(--cor-destaque);
+            padding-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Áreas de Elementos Visuais */
+        .container-visual {
+            background-color: var(--bg-principal);
+            border: 2px solid var(--cor-borda);
             border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-
-        h1, h2, h3 {
-            color: var(--accent-color);
-        }
-
-        /* Área do Diagrama de Física */
-        .diagrama-container {
-            border: 2px dashed var(--border-color);
-            padding: 20px;
-            margin: 20px 0;
+            padding: 24px;
+            margin: 30px 0;
             text-align: center;
-            background-color: var(--bg-color);
         }
 
-        .caixa-classificacao {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 4px;
+        .legenda-visual {
+            font-size: 0.95rem;
+            color: var(--texto-secundario);
+            margin-top: 12px;
+            font-style: italic;
         }
 
-        /* Grid para os contextos da óptica */
-        .grid-contextos {
+        /* Grids Adaptativos */
+        .grid-flex {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 25px;
+            margin-top: 25px;
         }
 
-        @media (max-width: 600px) {
-            .grid-contextos {
+        @media (max-width: 768px) {
+            .grid-flex {
                 grid-template-columns: 1fr;
             }
         }
 
-        .card-contexto {
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            border-radius: 6px;
-            background-color: var(--bg-color);
+        .card-item {
+            background-color: var(--bg-principal);
+            border: 1px solid var(--cor-borda);
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .bloco-audio {
+            background-color: var(--cor-destaque);
+            border-left: 6px solid var(--texto-principal);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
         }
 
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: var(--card-bg);
-            border-top: 1px solid var(--border-color);
-            margin-top: 40px;
+            padding: 40px 20px;
+            background-color: var(--bg-card);
+            border-top: 2px solid var(--cor-borda);
+            color: var(--texto-secundario);
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Acessibilidade: Atalho para leitores de tela -->
     <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
 
-    <!-- Barra de Ferramentas Assistivas -->
-    <div class="barra-acessibilidade" role="toolbar" aria-label="Ferramentas de acessibilidade">
-        <button class="btn-acessibilidade" onclick="alterarFonte(1.2)" aria-label="Aumentar tamanho do texto">A+</button>
-        <button class="btn-acessibilidade" onclick="alterarFonte(0.8)" aria-label="Diminuir tamanho do texto">A-</button>
-        <button class="btn-acessibilidade" onclick="alternarContraste()" aria-label="Alternar alto contraste">Alto Contraste</button>
+    <!-- Ferramentas Assistivas -->
+    <div class="barra-acessibilidade" role="toolbar" aria-label="Acessibilidade">
+        <span class="titulo-barra">Recursos Assistivos:</span>
+        <div class="grupo-botoes">
+            <button class="btn-assistivo" onclick="mudarFonte(1.15)" aria-label="Aumentar Texto">A+</button>
+            <button class="btn-assistivo" onclick="mudarFonte(0.85)" aria-label="Diminuir Texto">A-</button>
+            <button class="btn-assistivo" onclick="alternarContrasteSite()" aria-label="Alternar Alto Contraste">Alto Contraste</button>
+        </div>
     </div>
 
     <header>
-        <h1>Tecnologia Assistiva e Óptica Física</h1>
-        <p>Projeto Interdisciplinar: Física, Programação e Robótica</p>
+        <h1>Tecnologia Assistiva, Óptica Física e Automação</h1>
+        <p class="meta-info">Artigo Interdisciplinar Estruturado — Física, Programação e Robótica</p>
     </header>
 
     <main id="conteudo-principal">
 
-        <!-- SEÇÃO 1: Smartphones e Acessibilidade -->
-        <section aria-labelledby="sec1-titulo">
-            <h2 id="sec1-titulo">Smartphones e a Inclusão Visual</h2>
+        <!-- SEÇÃO 1: SMARTPHONES E GADGETS ASSISTIVOS -->
+        <section aria-labelledby="tit-sec1">
+            <h2 id="tit-sec1">1. Smartphones de Alta Resolução na Inclusão Visual</h2>
             <p>
-                A popularização dos smartphones com câmeras de alta resolução revolucionou a vida de pessoas cegas ou com baixa visão. 
-                Sob a perspectiva da <strong>tecnociência</strong>, esses aparelhos deixaram de ser apenas meios de comunicação e se transformaram em poderosos <strong>gadgets assistivos</strong>.
+                A pergunta norteadora do nosso projeto investiga: <strong>"De que forma a popularização da tecnologia dos Smartphones (com câmeras de maior resolução) ajuda na acessibilidade de pessoas cegas ou com baixa visão?"</strong>
+            </p>
+            <p>
+                A resposta está na convergência entre **Física, Programação e Robótica**. Câmeras de alta resolução capturam mais detalhes de luz e geram imagens nítidas. A partir daí, softwares com Inteligência Artificial (Programação) analisam os pixels e identificam o ambiente. Por fim, sistemas mecânicos ou de software (Robótica/Automação) transformam essas informações digitais em respostas físicas, como comandos de voz detalhados ou vibrações táteis no aparelho.
             </p>
             <h3>O que é um Gadget Assistivo?</h3>
             <p>
-                Gadgets assistivos são dispositivos, recursos ou sistemas eletrônicos desenvolvidos especificamente para ampliar, 
-                manter ou melhorar as capacidades funcionais de pessoas com deficiência, garantindo-lhes maior autonomia e inclusão social.
-            </p>
-            <p>
-                Graças à alta resolução das câmeras, algoritmos de inteligência artificial (programação) conseguem capturar imagens perfeitamente nítidas e traduzi-las em áudio ou sinais táteis (robótica/automação), identificando objetos, lendo textos e descrevendo ambientes em tempo real.
+                <strong>Gadgets Assistivos</strong> são dispositivos, ferramentas eletrônicas ou softwares desenvolvidos especificamente para ampliar, manter ou melhorar as capacidades funcionais e sensoriais de pessoas com deficiência. Eles removem barreiras e promovem autonomia em atividades cotidianas.
             </p>
         </section>
 
-        <!-- SEÇÃO 2: Física Óptica e Diagrama de Raios -->
-        <section aria-labelledby="sec2-titulo">
-            <h2 id="sec2-titulo">Física: Formação da Imagem na Câmera</h2>
+        <!-- SEÇÃO 2: FÍSICA ÓPTICA - DIAGRAMA DE RAIOS -->
+        <section aria-labelledby="tit-sec2">
+            <h2 id="tit-sec2">2. Física e Tecnociência: Formação da Imagem na Câmera</h2>
             <p>
-                A câmera do celular utiliza um sistema de <strong>lentes convergentes</strong> para capturar a luz refletida pelos objetos. 
-                Abaixo está a representação conceitual do diagrama de raios luminosos desse processo:
+                A lente de um smartphone atua como uma **lente convergente**. Quando a luz reflete em um objeto e passa por ela, os raios sofrem refração e se concentram no sensor digital. Veja a representação geométrica desse fenômeno abaixo:
             </p>
 
-            <!-- Elemento visual estruturado de forma acessível -->
-            <div class="diagrama-container" aria-label="Diagrama esquemático de raios luminosos passando por uma lente convergente">
-                <svg viewBox="0 0 600 200" width="100%" height="auto" style="max-width:600px;" aria-hidden="true">
-                    <!-- Linha do Eixo Principal -->
-                    <line x1="50" y1="100" x2="550" y2="100" stroke="var(--text-color)" stroke-width="2" />
-                    <!-- Lente Convergente -->
-                    <line x1="300" y1="20" x2="300" y2="180" stroke="var(--accent-color)" stroke-width="4" />
-                    <path d="M 300 20 L 290 35 M 300 20 L 310 35 M 300 180 L 290 165 M 300 180 L 310 165" stroke="var(--accent-color)" stroke-width="3" fill="none"/>
+            <!-- Foto/Gráfico 1: Diagrama de Raios -->
+            <div class="container-visual" aria-label="Diagrama esquemático de raios de luz atravessando uma lente convergente e gerando uma imagem menor invertida no sensor">
+                <svg viewBox="0 0 800 300" width="100%" height="auto" style="max-width:750px;" aria-hidden="true">
+                    <line x1="50" y1="150" x2="750" y2="150" stroke="var(--texto-principal)" stroke-width="2" stroke-dasharray="5 5" />
+                    <path d="M 400 40 Q 425 150 400 260 Q 375 150 400 40" fill="#38bdf8" fill-opacity="0.3" stroke="#0284c7" stroke-width="3"/>
                     
-                    <!-- Objeto (Seta para Cima) -->
-                    <line x1="120" y1="100" x2="120" y2="40" stroke="green" stroke-width="4" marker-end="url(#arrow)" />
-                    <text x="100" y="30" fill="var(--text-color)" font-weight="bold">Objeto</text>
-                    
+                    <!-- Objeto (Seta Verde) -->
+                    <line x1="140" y1="150" x2="140" y2="70" stroke="#22c55e" stroke-width="5" />
+                    <polygon points="140,60 133,75 147,75" fill="#22c55e"/>
+                    <text x="110" y="50" fill="#22c55e" font-weight="bold" font-size="14">Objeto Real</text>
+
                     <!-- Raios de Luz -->
-                    <!-- Raio paralelo que refrata passando pelo foco -->
-                    <path d="M 120 40 L 300 40 L 450 140" fill="none" stroke="red" stroke-width="2" stroke-dasharray="4" />
-                    <!-- Raio que passa pelo centro óptico -->
-                    <path d="M 120 40 L 300 100 L 450 140" fill="none" stroke="orange" stroke-width="2" />
-                    
-                    <!-- Imagem (Seta Invertida e Menor) -->
-                    <line x1="450" y1="100" x2="450" y2="140" stroke="blue" stroke-width="4" />
-                    <text x="430" y="160" fill="var(--text-color)" font-weight="bold">Imagem (Sensor)</text>
-                </svg>
-
-                <div class="caixa-classificacao">
-                    <strong>Classificação Física da Imagem no Sensor:</strong><br>
-                    • Natureza: <strong>Real</strong> (formada pelo cruzamento real dos raios de luz)<br>
-                    • Orientação: <strong>Invertida</strong> (de cabeça para baixo)<br>
-                    • Tamanho: <strong>Menor</strong> (reduzida para caber no chip da câmera)
-                </div>
-            </div>
-
-            <h3>🎙️ Áudio-Descrição: O Caminho da Luz (Linguagem Simples)</h3>
-            <p style="font-style: italic; border-left: 4px solid var(--accent-color); padding-left: 15px;">
-                "Imagine que a luz do sol ou de uma lâmpada bate em um objeto, como uma pessoa ou uma placa. Essa luz rebate no objeto e viaja em linha reta em direção ao celular. Quando ela entra no buraquinho da câmera, passa por uma lente de vidro arredondada. Essa lente força os raios de luz a se dobrarem e se cruzarem lá dentro. Esse cruzamento projeta a imagem do objeto de cabeça para baixo e bem pequenininha em cima do sensor digital da câmera, exatamente como acontece no fundo dos nossos olhos. O chip do celular então desvira a foto e lê o que está escrito."
-            </p>
-        </section>
-
-        <!-- SEÇÃO 3: Aplicações Práticas nos 4 Contextos -->
+                    <path d="M 140 70 L 400 70 L 660 215" fill="none" stroke="#ef4444" stroke-width="2.5" />
