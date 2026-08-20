@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tecnologia Assistiva, Óptica Avançada e Robótica</title>
+    <title>Portal Interdisciplinar: Óptica Física, Programação e Robótica Assistiva</title>
     <style>
-        /* --- SISTEMA DE CORES ACESSÍVEIS (WCAG) --- */
+        /* --- ARQUITETURA DE DESIGN ACESSÍVEL (DIRETRIZES WCAG) --- */
         :root {
             --bg-principal: #f8fafc;
             --bg-card: #ffffff;
@@ -15,9 +15,10 @@
             --cor-link: #0284c7;
             --cor-borda: #cbd5e1;
             --cor-destaque: #e2e8f0;
+            --cor-alerta: #b91c1c;
         }
 
-        /* Classe de Alto Contraste (Injetada via JS) */
+        /* Classe de Alto Contraste para Baixa Visão */
         .alto-contraste {
             --bg-principal: #000000;
             --bg-card: #121212;
@@ -27,6 +28,7 @@
             --cor-link: #ffff00;
             --cor-borda: #ffffff;
             --cor-destaque: #1e1e1e;
+            --cor-alerta: #ffff00;
         }
 
         body {
@@ -35,12 +37,12 @@
             color: var(--texto-principal);
             margin: 0;
             padding: 0;
-            line-height: 1.8;
-            font-size: 1.2rem; /* Fonte ampliada nativa para inclusão */
+            line-height: 1.9;
+            font-size: 1.25rem; /* Fonte ampliada nativa para favorecer a inclusão */
             transition: background 0.2s, color 0.2s;
         }
 
-        /* Skip Link para usuários de teclado / leitores de tela */
+        /* Acessibilidade de Teclado (Skip Link) */
         .skip-link {
             position: absolute;
             top: -100px;
@@ -57,11 +59,11 @@
             top: 10px;
         }
 
-        /* Barra Assistiva Superior */
+        /* Painel Assistivo Superior */
         .barra-acessibilidade {
             background-color: var(--bg-card);
-            border-bottom: 3px solid var(--cor-borda);
-            padding: 12px 24px;
+            border-bottom: 4px solid var(--cor-borda);
+            padding: 15px 30px;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -73,7 +75,7 @@
         }
 
         .titulo-barra {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -82,18 +84,19 @@
 
         .grupo-botoes {
             display: flex;
-            gap: 12px;
+            gap: 15px;
         }
 
         .btn-assistivo {
             background-color: var(--bg-principal);
             color: var(--texto-principal);
             border: 2px solid var(--texto-principal);
-            padding: 8px 16px;
+            padding: 10px 20px;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 6px;
-            font-size: 1.1rem;
+            border-radius: 8px;
+            font-size: 1.15rem;
+            transition: all 0.2s;
         }
 
         .btn-assistivo:hover, .btn-assistivo:focus {
@@ -102,172 +105,188 @@
             outline: 3px solid #f59e0b;
         }
 
-        /* Estrutura de Conteúdo */
+        /* Estrutura Geral */
         header {
-            max-width: 1000px;
-            margin: 40px auto 20px auto;
+            max-width: 1100px;
+            margin: 50px auto 30px auto;
             padding: 0 24px;
             text-align: center;
         }
 
         header h1 {
-            font-size: 2.6rem;
+            font-size: 2.8rem;
             color: var(--cor-acentuacao);
+            margin-bottom: 15px;
         }
 
         .meta-info {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--texto-secundario);
             border-bottom: 2px solid var(--cor-borda);
-            padding-bottom: 20px;
+            padding-bottom: 25px;
         }
 
         main {
-            max-width: 1040px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
         }
 
         section {
             background-color: var(--bg-card);
-            padding: 40px;
-            margin-bottom: 40px;
-            border-radius: 12px;
+            padding: 50px;
+            margin-bottom: 50px;
+            border-radius: 16px;
             border: 1px solid var(--cor-borda);
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
 
         h2 {
-            font-size: 1.9rem;
+            font-size: 2rem;
             color: var(--cor-acentuacao);
-            border-left: 6px solid var(--cor-acentuacao);
-            padding-left: 15px;
+            border-left: 8px solid var(--cor-acentuacao);
+            padding-left: 20px;
             margin-top: 0;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--cor-acentuacao);
-            margin-top: 30px;
-            border-bottom: 2px solid var(--cor-destaque);
-            padding-bottom: 5px;
+            margin-top: 40px;
+            border-bottom: 2px solid var(--cor-borda);
+            padding-bottom: 8px;
         }
 
         p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: justify;
         }
 
-        /* Áreas de Elementos Visuais */
+        ul, ol {
+            margin-bottom: 25px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        /* Containers de Mídia (Imagens Dinâmicas) */
         .container-visual {
             background-color: var(--bg-principal);
             border: 2px solid var(--cor-borda);
-            border-radius: 8px;
-            padding: 24px;
-            margin: 30px 0;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 35px 0;
             text-align: center;
         }
 
         .legenda-visual {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--texto-secundario);
-            margin-top: 12px;
+            margin-top: 15px;
             font-style: italic;
         }
 
-        /* Grids Adaptativos */
-        .grid-flex {
+        /* Grids Responsivos */
+        .grid-duplo {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 25px;
+            gap: 30px;
+            margin-top: 30px;
         }
 
-        @media (max-width: 768px) {
-            .grid-flex {
+        @media (max-width: 850px) {
+            .grid-duplo {
                 grid-template-columns: 1fr;
             }
         }
 
-        .card-item {
+        .card-conteudo {
             background-color: var(--bg-principal);
             border: 1px solid var(--cor-borda);
-            padding: 25px;
-            border-radius: 8px;
+            padding: 30px;
+            border-radius: 10px;
         }
 
-        .bloco-audio {
+        .card-conteudo h4 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            color: var(--cor-acentuacao);
+            border-bottom: 2px solid var(--cor-borda);
+            padding-bottom: 5px;
+        }
+
+        /* Bloco de Áudio-Descrição */
+        .bloco-transcricao {
             background-color: var(--cor-destaque);
-            border-left: 6px solid var(--texto-principal);
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 0 8px 8px 0;
+            border-left: 8px solid var(--texto-principal);
+            padding: 30px;
+            margin: 35px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* Seção Especial de Atendimento */
+        .secao-consulta {
+            background-color: var(--cor-destaque);
+            border: 3px solid var(--cor-alerta);
+            text-align: center;
+            padding: 40px;
+            border-radius: 16px;
+        }
+
+        .numero-telefone {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--cor-alerta);
+            margin: 20px 0;
+            display: inline-block;
+            letter-spacing: 2px;
         }
 
         footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 50px 20px;
             background-color: var(--bg-card);
             border-top: 2px solid var(--cor-borda);
             color: var(--texto-secundario);
-            margin-top: 60px;
+            margin-top: 80px;
         }
     </style>
 </head>
 <body>
 
-    <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+    <!-- Atalho de acessibilidade para teclado -->
+    <a href="#conteudo-artigo" class="skip-link">Pular direto para o conteúdo de pesquisa acadêmica</a>
 
-    <!-- Ferramentas Assistivas -->
-    <div class="barra-acessibilidade" role="toolbar" aria-label="Acessibilidade">
-        <span class="titulo-barra">Recursos Assistivos:</span>
+    <!-- Barra de Ferramentas de Acessibilidade -->
+    <div class="barra-acessibilidade" role="toolbar" aria-label="Ferramentas do Leitor">
+        <span class="titulo-barra">Controles do Usuário (Baixa Visão):</span>
         <div class="grupo-botoes">
-            <button class="btn-assistivo" onclick="mudarFonte(1.15)" aria-label="Aumentar Texto">A+</button>
-            <button class="btn-assistivo" onclick="mudarFonte(0.85)" aria-label="Diminuir Texto">A-</button>
-            <button class="btn-assistivo" onclick="alternarContrasteSite()" aria-label="Alternar Alto Contraste">Alto Contraste</button>
+            <button class="btn-assistivo" onclick="redimensionarTexto(1.15)" aria-label="Aumentar Tamanho da Letra">A+</button>
+            <button class="btn-assistivo" onclick="redimensionarTexto(0.85)" aria-label="Diminuir Tamanho da Letra">A-</button>
+            <button class="btn-assistivo" onclick="alternarContrastePagina()" aria-label="Inverter Cores para Alto Contraste">Alto Contraste</button>
         </div>
     </div>
 
     <header>
-        <h1>Tecnologia Assistiva, Óptica Física e Automação</h1>
-        <p class="meta-info">Artigo Interdisciplinar Estruturado — Física, Programação e Robótica</p>
+        <h1>A Revolução da Acessibilidade pela Luz e pela Automação</h1>
+        <p class="meta-info">Artigo Científico e Portal Integrado de Física, Programação Computacional e Robótica</p>
     </header>
 
-    <main id="conteudo-principal">
+    <main id="conteudo-artigo">
 
-        <!-- SEÇÃO 1: SMARTPHONES E GADGETS ASSISTIVOS -->
+        <!-- 1. INTRODUÇÃO E GADGETS ASSISTIVOS -->
         <section aria-labelledby="tit-sec1">
-            <h2 id="tit-sec1">1. Smartphones de Alta Resolução na Inclusão Visual</h2>
+            <h2 id="tit-sec1">1. Smartphones e o Novo Paradigma da Inclusão Sensorial</h2>
             <p>
-                A pergunta norteadora do nosso projeto investiga: <strong>"De que forma a popularização da tecnologia dos Smartphones (com câmeras de maior resolução) ajuda na acessibilidade de pessoas cegas ou com baixa visão?"</strong>
+                A contemporaneidade é marcada pela fusão entre ciência de ponta e dispositivos portáteis. Diante disso, este trabalho investiga um questionamento central: <strong>"De que forma a popularização da tecnologia dos Smartphones (com câmeras de maior resolução) ajuda na acessibilidade de pessoas cegas ou com baixa visão?"</strong>
             </p>
             <p>
-                A resposta está na convergência entre **Física, Programação e Robótica**. Câmeras de alta resolução capturam mais detalhes de luz e geram imagens nítidas. A partir daí, softwares com Inteligência Artificial (Programação) analisam os pixels e identificam o ambiente. Por fim, sistemas mecânicos ou de software (Robótica/Automação) transformam essas informações digitais em respostas físicas, como comandos de voz detalhados ou vibrações táteis no aparelho.
+                A resposta para esse fenômeno repousa na convergência exata de três pilares do conhecimento: **Física, Programação e Robótica**. Inicialmente, os sistemas ópticos compostos por micro-lentes convergentes de altíssima precisão capturam os feixes de fótons do ambiente. Câmeras de grande resolução registram uma quantidade maciça de pixels detalhados, reduzindo borrões mecânicos e ruídos na captura. 
             </p>
-            <h3>O que é um Gadget Assistivo?</h3>
             <p>
-                <strong>Gadgets Assistivos</strong> são dispositivos, ferramentas eletrônicas ou softwares desenvolvidos especificamente para ampliar, manter ou melhorar as capacidades funcionais e sensoriais de pessoas com deficiência. Eles removem barreiras e promovem autonomia em atividades cotidianas.
+                Em seguida, os sistemas lógicos de **Programação**, movidos por redes neurais artificiais de visão computacional, analisam a matriz de pixels gerada. O software reconhece os padrões, decodificando letras em livros, identificando obstáculos urbanos ou diferenciando o valor de cédulas monetárias. 
             </p>
-        </section>
-
-        <!-- SEÇÃO 2: FÍSICA ÓPTICA - DIAGRAMA DE RAIOS -->
-        <section aria-labelledby="tit-sec2">
-            <h2 id="tit-sec2">2. Física e Tecnociência: Formação da Imagem na Câmera</h2>
             <p>
-                A lente de um smartphone atua como uma **lente convergente**. Quando a luz reflete em um objeto e passa por ela, os raios sofrem refração e se concentram no sensor digital. Veja a representação geométrica desse fenômeno abaixo:
-            </p>
-
-            <!-- Foto/Gráfico 1: Diagrama de Raios -->
-            <div class="container-visual" aria-label="Diagrama esquemático de raios de luz atravessando uma lente convergente e gerando uma imagem menor invertida no sensor">
-                <svg viewBox="0 0 800 300" width="100%" height="auto" style="max-width:750px;" aria-hidden="true">
-                    <line x1="50" y1="150" x2="750" y2="150" stroke="var(--texto-principal)" stroke-width="2" stroke-dasharray="5 5" />
-                    <path d="M 400 40 Q 425 150 400 260 Q 375 150 400 40" fill="#38bdf8" fill-opacity="0.3" stroke="#0284c7" stroke-width="3"/>
-                    
-                    <!-- Objeto (Seta Verde) -->
-                    <line x1="140" y1="150" x2="140" y2="70" stroke="#22c55e" stroke-width="5" />
-                    <polygon points="140,60 133,75 147,75" fill="#22c55e"/>
-                    <text x="110" y="50" fill="#22c55e" font-weight="bold" font-size="14">Objeto Real</text>
-
-                    <!-- Raios de Luz -->
-                    <path d="M 140 70 L 400 70 L 660 215" fill="none" stroke="#ef4444" stroke-width="2.5" />
